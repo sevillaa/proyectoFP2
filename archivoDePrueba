@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+//CONSTANTES
+const int NumJugadores = 2;  //seleccionar valores entre 2 y 4
+const int NumFichas = 8;   //seleccionar entre 8 y 13
+const int IniFichas = 6;  //Seleccionar entre 6 y 14
+const int MaxFichas = 50; 
+const int MaxJugadas = NumFichas * 2;
+
+//ESTRUCTURAS DE DATOS
+typedef enum { amarillo, azul, rojo, verde, blanco, libre} tColor;
+struct tFicha {
+    int numero;
+    tColor color;
+};
+typedef tFicha tSoporte[MaxFichas];  //¿Así o con un struct aparte?
+typedef tSoporte tSoportes[NumJugadores];
+struct tBolsa{
+    tFicha bolsa[8][NumFichas];
+    int contador = 0;
+};
+typedef tFicha tJugada[NumFichas + 1];
+struct tTablero {
+    tJugada jugada[MaxJugadas];
+    int contador = 0;
+};
+
+
+void colorTexto(tColor color);
+void colorTexto(tColor color) {
+    switch (color) {
+    case amarillo:
+        cout << "\033[1;40;33m";
+        break;
+    case azul:
+        cout << "\033[40;34m";
+        break;
+    case rojo:
+        cout << "\033[40;31m";
+        break;
+    case verde:
+        cout << "\033[40;32m";
+        break;
+    case blanco:
+        cout << "\033[40;1;37m";
+        break;
+    default:
+        cout << "\033[40;1;37m";
+        break;
+    }
+}
